@@ -1,0 +1,48 @@
+.dashboard {
+    display: flex;
+    width: 100vw; 
+    height: 100vh; 
+  }
+  
+  .tabs {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(5, 12, 61);
+    padding: 10px;
+    width: 200px;
+    height: 100%;
+    flex: 0 0 auto;
+    overflow-y: auto;
+    color: white;
+  }
+  
+  .tab {
+    cursor: pointer;
+    padding: 8px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+  }
+  
+  .tab.active {
+    background-color: rgb(128, 0, 2);
+  }
+  
+  .content-container {
+    flex: 1;
+    overflow-y: auto;
+    background-image: url('../assets/loginbackground.png');
+    color: white;
+  }
+  
+  .comp-heading {
+    font-size: 40px;
+    margin-top: 20px;
+    color: white; 
+    text-align: center;
+    padding: 10px 20px 10px 20px; 
+    display: inline-block; 
+    border-radius: 10px;
+  }
+  
+  
+  

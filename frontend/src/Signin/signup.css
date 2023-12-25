@@ -1,0 +1,100 @@
+.login-container {
+    background-color: white;
+    margin          : auto;
+    text-align      : center;
+    padding-top     : 150px;
+}
+
+.heading h1 {
+    color        : aliceblue;
+    margin-bottom: 50px;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo img {
+    width        : 100%;
+    max-width    : 200px;
+    border-radius: 50px;
+}
+
+.centered-form {
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+    margin-top    : 30px;
+}
+
+.form-container {
+    width    : 100%;
+    max-width: 300px;
+}
+
+#floatingInput,
+#floatingPassword {
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.button-container {
+    display       : flex;
+    flex-direction: column;
+    margin-top    : 20px;
+}
+
+.button-container h3 {
+    color: aliceblue;
+}
+
+.button {
+    margin-left : auto;
+    margin-right: auto;
+}
+
+.signup {
+    display    : flex;
+    align-items: center;
+    margin-top : 50px;
+}
+
+.signup h6 {
+    color             : rgb(253, 253, 253);
+    padding-inline-end: 100px;
+    padding-inline-start: 100px;
+}
+
+
+
+@media only screen and (min-width: 600px) {
+    .login-container {
+        padding-top: 100px;
+    }
+
+    .form-container {
+        max-width: 400px;
+    }
+
+    .button-container {
+        flex-direction : row;
+        justify-content: center;
+        margin-top     : 40px;
+    }
+
+    .button {
+        margin-left: 275px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .login-container {
+        padding-top: 80px;
+    }
+
+
+    .signup h6 {
+        color             : rgb(253, 253, 253);
+        padding: auto;
+    }
+}
