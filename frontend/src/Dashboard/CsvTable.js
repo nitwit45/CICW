@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Table, Button } from "react-bootstrap";
 
 const CsvTable = ({ csvData }) => {
-  const [showMore, setShowMore] = useState(false);
+  const [startIndex, setStartIndex] = useState(0);
   const initialRowCount = 5;
 
   if (!csvData || csvData.length === 0) {
@@ -10,7 +10,19 @@ const CsvTable = ({ csvData }) => {
   }
 
   const headers = Object.keys(csvData[0]);
-  const visibleRows = showMore ? csvData.length : initialRowCount;
+  const visibleRows = csvData.slice(startIndex, startIndex + initialRowCount);
+
+  const showMoreRows = () => {
+    if (startIndex + initialRowCount < csvData.length) {
+      setStartIndex(startIndex + initialRowCount);
+    }
+  };
+
+  const showLessRows = () => {
+    if (startIndex - initialRowCount >= 0) {
+      setStartIndex(startIndex - initialRowCount);
+    }
+  };
 
   return (
     <div className="table-container">
@@ -23,7 +35,7 @@ const CsvTable = ({ csvData }) => {
           </tr>
         </thead>
         <tbody>
-          {csvData.slice(0, visibleRows).map((row, index) => (
+          {visibleRows.map((row, index) => (
             <tr key={index}>
               {headers.map((header) => (
                 <td key={header}>{row[header]}</td>
@@ -33,9 +45,10 @@ const CsvTable = ({ csvData }) => {
         </tbody>
       </Table>
       {csvData.length > initialRowCount && (
-        <Button onClick={() => setShowMore(!showMore)}>
-          {showMore ? "Show Less" : "Show More"}
-        </Button>
+        <div>
+          <Button onClick={showLessRows}>Back</Button>{" "}
+          <Button onClick={showMoreRows}>Next</Button>
+        </div>
       )}
     </div>
   );
