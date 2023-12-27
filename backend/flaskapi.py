@@ -22,6 +22,9 @@ app.config['ALLOWED_EXTENSIONS'] = {'csv'}
 truck_1_coordinates = []
 truck_2_coordinates = []
 
+capacity_1 = 0
+capacity_2 = 0
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
@@ -760,8 +763,8 @@ def get_route():
     # In[11]:
 
 
-    capacity_1 = 0
-    capacity_2 = 0
+    global capacity_1
+    global capacity_2
 
     print("Truck 1:")
     for order in truck1_solution:
@@ -1119,8 +1122,22 @@ def get_coordinates2():
     print(truck_2_coordinates)
     return(truck_2_coordinates)
 
+@app.route('/capacity1', methods=['POST'])
+def get_capacity1():
+    global capacity_1
+    print(capacity_1)
+    capacity_1 = int(capacity_1)
+    return jsonify(capacity_1)
+
+@app.route('/capacity2', methods=['POST'])
+def get_capacity2():
+    global capacity_2
+    print(capacity_2)
+    capacity_2 = int(capacity_2)
+    return jsonify(capacity_2)
 #------------------------SECOND GA ALGO-----------------------------------#
 
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+    
