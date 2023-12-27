@@ -13,7 +13,7 @@ const Component1 = () => {
       }}
     >
       <div style={{ flex: 1, textAlign: "center" }}>
-        <h1 className="comp-heading">Interface3</h1>
+        <h1 className="comp-heading">Local City Delivery Route Optimization</h1>
         <Maps />
       </div>
     </div>
