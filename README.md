@@ -44,9 +44,9 @@ python flaskapi.py
 ```
 ### Libraries Used
 
-# This project utilizes a variety of Python libraries for both frontend and backend development, as well as for implementing machine learning models and genetic algorithms. Below is a list of the key libraries used in this project, along with their versions:
+ This project utilizes a variety of Python libraries for both frontend and backend development, as well as for implementing machine learning models and genetic algorithms. Below is a list of the key libraries used in this project, along with their versions:
 
 ### Frontend Libraries
 
-# React.js: A JavaScript library for building user interfaces. 
-# npm: The package manager for JavaScript. It is used to install and manage project dependencies.
+ React.js: A JavaScript library for building user interfaces. 
+ npm: The package manager for JavaScript. It is used to install and manage project dependencies.
