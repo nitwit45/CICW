@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import "./maps.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const mapStyles = {
   width: "90%",
@@ -51,6 +54,8 @@ const truck2Info = {
 const MapContainer = (props) => {
   const [legDistances, setLegDistances] = useState([]);
   const [legDistances2, setLegDistances2] = useState([]);
+  const [departmentId, setDepartmentId] = useState("3");
+  const [date, setDate] = useState("2016-04-05")
 
   useEffect(() => {
     const map = new props.google.maps.Map(document.getElementById("map"), {
@@ -148,6 +153,17 @@ const MapContainer = (props) => {
 
   return (
     <div className="container">
+      <Container style={{marginBottom: "15px"}}>
+        <Row className="justify-content-md-center">
+          <Col xs lg="2">
+            DepartmentID: {departmentId}
+          </Col>
+          <Col md="auto"></Col>
+          <Col xs lg="2">
+            Date: {date}
+          </Col>
+        </Row>
+      </Container>
       <div className="truck-info-container">
         <div className="truck-info">
           <h2>Truck 1 Info:</h2>
@@ -167,7 +183,9 @@ const MapContainer = (props) => {
               ))}
             </tbody>
           </table>
-          <p className="capacity">Total capacity of Truck 1: {truck1Info.totalCapacity}</p>
+          <p className="capacity">
+            Total capacity of Truck 1: {truck1Info.totalCapacity}
+          </p>
         </div>
       </div>
       <div id="map" style={mapStyles}></div>
@@ -203,7 +221,9 @@ const MapContainer = (props) => {
               ))}
             </tbody>
           </table>
-          <p className="capacity">Total capacity of Truck 2: {truck2Info.totalCapacity}</p>
+          <p className="capacity">
+            Total capacity of Truck 2: {truck2Info.totalCapacity}
+          </p>
         </div>
       </div>
       <div id="map2" style={mapStyles}></div>
