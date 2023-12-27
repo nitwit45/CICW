@@ -96,7 +96,7 @@ def integrate_predictions_and_split_by_country(df, quantity_model, department_mo
     final_df = process_department_prediction_multithread(df.copy(), department_model, label_encoders, training_features)
 
     # Merge the results of quantity and department predictions with unique suffixes
-    merged_df = pd.merge(quantity_df, final_df, how='inner', left_index=True, right_index=True, suffixes=('_quantity', '_department'))
+    merged_df = pd.merge(quantity_df, final_df, how='inner', left_index=True, right_index=True)
 
     # Split data based on "Department Country" and "Order Country"
     same_country_df, different_country_df = split_data_by_country(df)
