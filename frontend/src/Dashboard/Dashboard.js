@@ -44,7 +44,7 @@ const Tabs = ({ tabs, selectedTab, onTabChange }) => {
 };
 
 const Dashboard = () => {
-  const tabs = ["Interface1", "Interface2", "Interface3", "Logout"];
+  const tabs = ["Upload Data", "International Delivery", "Local City Delivery", "Logout"];
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (

@@ -70,7 +70,6 @@ const Component1 = () => {
     >
       <div style={{ flex: 1, textAlign: "center" }}>
         <h1 className="comp-heading">Interface3</h1>
-        {loading && <p>Please Wait Generating...</p>}
         <Maps />
       </div>
     </div>
