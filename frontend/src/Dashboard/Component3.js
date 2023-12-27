@@ -70,12 +70,6 @@ const Component1 = () => {
     >
       <div style={{ flex: 1, textAlign: "center" }}>
         <h1 className="comp-heading">Interface3</h1>
-        <Button className="button2" variant="primary" onClick={handleButton3}>
-          Generate Route for Truck 1
-        </Button>
-        <Button className="button2" variant="primary" onClick={handleButton4}>
-          Generate Route for Truck 2
-        </Button>
         {loading && <p>Please Wait Generating...</p>}
         <Maps />
       </div>
