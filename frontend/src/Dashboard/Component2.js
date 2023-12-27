@@ -14,7 +14,7 @@ const Component2 = () => {
     >
       <div style={{ flex: 1, textAlign: "center" }}>
         <h2 className="comp-heading" >Interface2</h2>
-        <Maps />
+        {/* <Maps /> */}
       </div>
     </div>
   );
