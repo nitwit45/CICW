@@ -8,56 +8,10 @@ import Papa from "papaparse";
 import CsvTable from "../Dashboard/CsvTable"; // Make sure to use the correct path
 // import "./form.css";
 
-const Component1 = () => {
+const Component3 = () => {
   const [loading, setLoading] = useState(false);
 
-  const handleButton3 = async () => {
-    try {
-      setLoading(true); // Set loading state to true when starting the request
-
-      const response = await fetch('http://localhost:5000/route', {
-        method: 'POST',
-      });
-
-      if (!response.ok) {
-        console.error('Error fetching graph:', response.statusText);
-        return;
-      }
-
-      const truck_1_coordinates = await response.json();
-
-      console.log('Truck1 Coordinates:', truck_1_coordinates);
-      // window.openc(objectURL, '_blank');
-    } catch (error) {
-      console.error('Error fetching graph:', error);
-    } finally {
-      setLoading(false); // Set loading state to false when the request is complete
-    }
-  };
-
-  const handleButton4 = async () => {
-    try {
-      setLoading(true); // Set loading state to true when starting the request
-
-      const response = await fetch('http://localhost:5000/truck2', {
-        method: 'POST',
-      });
-
-      if (!response.ok) {
-        console.error('Error fetching graph:', response.statusText);
-        return;
-      }
-
-      const truck_2_coordinates = await response.json();
-
-      console.log('Truck2 Coordinates:', truck_2_coordinates);
-      // window.openc(objectURL, '_blank');
-    } catch (error) {
-      console.error('Error fetching graph:', error);
-    } finally {
-      setLoading(false); // Set loading state to false when the request is complete
-    }
-  };
+  
 
   return (
     <div
@@ -76,4 +30,4 @@ const Component1 = () => {
   );
 };
 
-export default Component1;
+export default Component3;

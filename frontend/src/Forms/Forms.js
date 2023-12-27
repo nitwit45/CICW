@@ -10,6 +10,7 @@ import "./form.css";
 const Forms = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [csvData, setCsvData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -50,6 +51,7 @@ const Forms = () => {
     }
   };
 
+
   const handleButton = async () => {
     if (!selectedFile) {
       console.log("No file selected");
@@ -60,6 +62,8 @@ const Forms = () => {
     formData.append('file', selectedFile);
 
     try {
+      setLoading(true); // Set loading state to true when starting the request
+
       const response = await fetch('http://localhost:5000/button', {
         method: 'POST',
         body: formData,
@@ -71,7 +75,7 @@ const Forms = () => {
         header: true,
         complete: function (parsedResult) {
           console.log("Parsed CSV Data:", parsedResult.data);
-
+          setLoading(false); // Set loading state to false when the request is complete
           // Set the parsed CSV data to state
           setCsvData(parsedResult.data);
         },
@@ -151,6 +155,8 @@ const Forms = () => {
       <Button className="button3" variant="primary" onClick={handleButton}>
         View GA RESULTS for Different Countries
       </Button>
+      {loading && <p>Please Wait Generating...</p>}
+      {!loading && <p>Generation Complete</p>}
       <Col></Col>
       <Button className="button2" variant="primary" onClick={handleButton2}>
         View Convergence Plot
