@@ -11,6 +11,10 @@ from math import radians, sin, cos, sqrt, atan2
 from flask import Flask, jsonify
 from flask_cors import CORS
 
+app = Flask(__name__)
+CORS(app)
+
+
 # Load the CSV file into a pandas DataFrame
 df = pd.read_csv('/Users/sandundesilva/Documents/4th year/CI/CIFINAL/CICW/backend/gaMap/data4.csv')
 
@@ -255,7 +259,7 @@ def calculate_distance(coord1, coord2):
     distance = R * c  # Distance in kilometers
     return distance
 
-def evaluate(individual):
+def evaluate2(individual):
     total_distance = 0
     total_capacity_truck1 = 0
     total_capacity_truck2 = 0
@@ -298,7 +302,7 @@ toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("mate", tools.cxOrdered)
 toolbox.register("mutate", tools.mutShuffleIndexes, indpb=0.05)
 toolbox.register("select", tools.selTournament, tournsize=3)
-toolbox.register("evaluate", evaluate)
+toolbox.register("evaluate", evaluate2)
 
 # Set up GA parameters
 population_size = 50
@@ -406,8 +410,6 @@ truck2_coordinates = [[lat, lon] for lat, lon in zip(truck2_latitude, truck2_lon
 print("\nTruck 2 - Coordinates after removing duplicates:")
 print(truck2_coordinates)
 
-app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}}) 
 
 @app.route('/optimize', methods=['GET'])
 def optimize():

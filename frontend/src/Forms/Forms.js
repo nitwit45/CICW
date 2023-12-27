@@ -158,7 +158,8 @@ const Forms = () => {
       
       <Button className="button2" variant="primary" onClick={handleButton3}>
         View Pareto Front Plot
-      </Button>
+      </Button>      
+
     </div>
   );
 };
