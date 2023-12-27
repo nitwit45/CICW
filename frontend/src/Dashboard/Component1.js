@@ -13,7 +13,7 @@ const Component1 = () => {
       }}
     >
       <div style={{ flex: 1, textAlign: "center" }}>
-        <h1 className="comp-heading">Interface1</h1>
+        <h1 className="comp-heading">ddd</h1>
         <Forms />
       </div>
     </div>
