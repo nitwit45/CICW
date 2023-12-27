@@ -9,16 +9,19 @@ const mapStyles = {
 };
 
 const locations = [
-  { lat: 6.964029, lng: 79.897132, label: "A" },
-  { lat: 6.986521, lng: 79.936442, label: "B" },
-  { lat: 7.051093, lng: 79.866576, label: "C" },
-  { lat: 7.113161, lng: 79.883399, label: "D" },
-  { lat: 7.178056, lng: 79.892326, label: "E" },
-  { lat: 7.163409, lng: 79.983821, label: "F" },
-  { lat: 6.950222, lng: 79.976905, label: "G" },
-  { lat: 6.852967, lng: 80.084421, label: "H" },
-  { lat: 6.795612, lng: 80.142464, label: "I" },
-  { lat: 6.612645, lng: 80.220264, label: "J" },
+  { lat: 40.7018013, lng: -84.88657379, label: "A" },
+  { lat: 47.6038321, lng: -122.330062, label: "B" },
+  { lat: 29.7589382, lng: -95.3676974, label: "C" },
+  { lat: 41.7571701, lng: -88.3147539, label: "D" },
+  { lat: 39.9622601, lng: -83.0007065, label: "E" },
+];
+
+const locations2 = [
+  { lat: 40.7018013, lng: -84.88657379, label: "A" },
+  { lat: 34.0536909, lng: -118.242766, label: "B" },
+  { lat: 40.735657, lng: -74.1723667, label: "C" },
+  { lat: 32.7174202, lng: -117.1627728, label: "D" },
+  { lat: 39.9622601, lng:  -83.0007065, label: "E" },
 ];
 
 const MapContainer = (props) => {
@@ -27,7 +30,7 @@ const MapContainer = (props) => {
   useEffect(() => {
     const map = new props.google.maps.Map(document.getElementById("map"), {
       zoom: 10,
-      center: { lat: 6.92696, lng: 79.86138 },
+      center: { lat: 40.7018013, lng: -84.88657379 },
     });
 
     const directionsService = new props.google.maps.DirectionsService();
@@ -77,21 +80,21 @@ const MapContainer = (props) => {
 
   return (
     <div>
-      <div id="map" style={mapStyles}></div>
-      <div className="leg-distances">
-        <p>Leg Distances:</p>
-        <ul>
-          {legDistances.map((leg, index) => (
-            <li key={index}>
-              <span className="start-location">{leg.startLocation}</span>
-              <span className="separator"> to </span>
-              <span className="end-location">{leg.endLocation}</span>
-              <span className="distance">: {leg.distance}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div id="map" style={mapStyles}></div>
+    <div className="leg-distances">
+      <p>Leg Distances:</p>
+      <ul>
+        {legDistances.map((leg, index) => (
+          <li key={index}>
+            <span className="start-location">{leg.startLocation}</span>
+            <span className="separator"> to </span>
+            <span className="end-location">{leg.endLocation}</span>
+            <span className="distance">: {leg.distance}</span>
+          </li>
+        ))}
+      </ul>
     </div>
+  </div>
   );
 };
 

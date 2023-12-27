@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Maps from "../Map/Maps";
 
 const Component1 = () => {
+
   return (
     <div
       style={{
