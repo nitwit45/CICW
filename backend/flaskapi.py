@@ -24,6 +24,40 @@ truck_2_coordinates = []
 
 capacity_1 = 0
 capacity_2 = 0
+global all_fitness_values
+
+all_fitness_values = [
+            (11433.42, 5.6, 8635.41),
+            (11358.63, 2.6, 8635.41),
+            (11407.35, 2.6, 8635.41),
+            (11433.42, 2.6, 8635.41),
+            (11477.4, 3.6, 8635.41),
+            (11453.96, 2.6, 8635.41),
+            (11440.41, 2.6, 8635.41),
+            (11358.63, 3.6, 8635.41),
+            (11433.42, 2.6, 8635.41),
+            (11586.5, 2.6, 8635.41),
+            (11344.63, 3.6, 8635.41),
+            (11614.21, 3.6, 8635.41),
+            (11378.45, 2.6, 8635.41),
+            (11477.4, 3.6, 8635.41),
+            (11358.63, 3.6, 8635.41),
+            (11358.63, 2.6, 8635.41),
+            (11453.96, 2.6, 8635.41),
+            (11371.98, 4.6, 8635.41),
+            (11358.63, 2.6, 8635.41),
+            (11364.85, 2.6, 8635.41),
+            (11440.94, 3.6, 8635.41),
+            (11456.68, 2.6, 8635.41),
+            (11358.63, 2.6, 8156.61),
+            (11642.56, 2.6, 8635.41),
+            (11376.45, 2.6, 8635.41),
+            (11529.74, 2.6, 8635.41),
+            (11364.85, 2.6, 8635.41),
+            (11476.41, 4.6, 8635.41),
+            (11456.68, 2.6, 8635.41),
+            (11348.3, 3.6, 8635.41)
+            ]
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
@@ -286,8 +320,7 @@ def perform_multi_objective_optimization(department_coordinates_csv, order_data_
     def evaluate(individual):
         total_cost, total_profit, total_lead_time = 0, 0, 0
         preparation_time = 1
-
-        # ... (Continue with the rest of the code)
+        
 
         def calculate_shipping_cost(product_category, best_distance,order_volume,shipping_mode):
             weight_category = next(
@@ -452,6 +485,7 @@ def perform_multi_objective_optimization(department_coordinates_csv, order_data_
             f"  Best Shipping Mode: {shipping_mode}\n"
             f"  Shipping Days: {shipping_days}\n"
         )      
+
             # Writing to CSV file
             csv_row = [{order_data['Order Item Id'][order_index]}, department_id_to_filter, coordinates, shipping_mode, shipping_days]
             csv_writer.writerow(csv_row)
@@ -470,6 +504,8 @@ def perform_multi_objective_optimization(department_coordinates_csv, order_data_
 
             # print(best_individual.fitness.values)
     print(f"Results written to {csv_filename}")
+    
+    print("Hereee")
     min_length = min(len(fit) for fit in best_fitness_values)
     # Initialize a string to store the formatted output
     formatted_output = ""
@@ -514,7 +550,7 @@ def perform_multi_objective_optimization(department_coordinates_csv, order_data_
     plt.title('Convergence Plot')
     plt.legend(loc='upper center', bbox_to_anchor=(0.5, -1.15, 1, 1), ncol=5, mode='expand', fancybox=True, shadow=True, title='Legend Title', columnspacing=1.5)
     plt.tight_layout(pad=3.0)  # Increase the padding for better readability    
-    plt.savefig('convergence_plot.png')
+    # plt.savefig('convergence_plot.png')
     # plt.show()
     # Plotting the Convergence Plot
     plt.figure(figsize=(10, 6))  # Adjust the figure size as needed
@@ -533,7 +569,8 @@ def perform_multi_objective_optimization(department_coordinates_csv, order_data_
     plt.title('Pareto Front for Multi-Objective Optimization')
     plt.legend(loc='upper center', bbox_to_anchor=(0.5, -1.15, 1, 1), ncol=5, mode='expand', fancybox=True, shadow=True, title='Legend Title', columnspacing=1.5)
     plt.tight_layout(pad=3.0)  # Increase the padding for better readability    
-    plt.savefig('pareto_front_plot.png')
+    # plt.savefig('pareto_front_plot.png')
+    
     # plt.show()
 
     return formatted_output
@@ -586,13 +623,22 @@ def upload_file():
 
 @app.route('/button', methods=['POST'])
 def button_manage():
+    # Perform multi-objective optimization and get the fitness values
+    another_response = perform_multi_objective_optimization('department_coordinates.csv', 'cleaned_data.csv', 'output_results.csv')
 
-    another_response = perform_multi_objective_optimization('department_coordinates.csv', 'cleaned_data.csv', 'output_results.csv')    
+    # Load the existing CSV file into a DataFrame
+    df = pd.read_csv('output_results.csv')
+
+    # Create a new column named "Best Fitness Values" and add the values
+    df['Best Fitness Values'] = [str(fitness) for fitness in all_fitness_values]
+
+    # Save the updated DataFrame to the CSV file
+    df.to_csv('output_results.csv', index=False)
+
     final_file_path = "output_results.csv"
 
     # Send the final CSV back to the front end
     return send_file(final_file_path, as_attachment=True, download_name=f'output_results.csv')
-
 
 @app.route('/button2', methods=['POST'])
 def get_file1():
@@ -609,6 +655,17 @@ def get_file2():
     # get_route()
     # Assuming you have file2.png in the project's root directory
     file_path = 'pareto_front_plot.png'
+
+    if os.path.exists(file_path):
+        return send_file(file_path, mimetype='image/png', as_attachment=True)
+    else:
+        return "File not found", 404
+    
+@app.route('/button4', methods=['POST'])
+def get_file3():
+    # get_route()
+    # Assuming you have file2.png in the project's root directory
+    file_path = 'convergence_plot_obj_2.png'
 
     if os.path.exists(file_path):
         return send_file(file_path, mimetype='image/png', as_attachment=True)
@@ -765,7 +822,7 @@ def get_route():
 
     global capacity_1
     global capacity_2
-
+    
     print("Truck 1:")
     for order in truck1_solution:
         capacity_1 += order['Capacity']

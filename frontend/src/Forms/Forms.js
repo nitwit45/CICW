@@ -127,6 +127,26 @@ const Forms = () => {
       console.error('Error fetching graph:', error);
     }
   };
+  const handleButton4 = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/button4', {
+        method: 'POST',
+      });
+  
+      if (!response.ok) {
+        console.error('Error fetching graph:', response.statusText);
+        return;
+      }
+  
+      const blob = await response.blob();
+      const objectURL = URL.createObjectURL(blob);
+  
+      // Display the graph by opening it in a new tab
+      window.open(objectURL, '_blank');
+    } catch (error) {
+      console.error('Error fetching graph:', error);
+    }
+  };
 
   return (
     <div className="form1">
@@ -161,10 +181,13 @@ const Forms = () => {
       <Button className="button2" variant="primary" onClick={handleButton2}>
         View Convergence Plot
       </Button>      
-      
+      <Button className="button2" variant="primary" onClick={handleButton4}>
+        View Convergence Plot (Objective 2)
+      </Button>      
       <Button className="button2" variant="primary" onClick={handleButton3}>
         View Pareto Front Plot
       </Button>      
+
 
     </div>
   );
